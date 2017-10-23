@@ -30,10 +30,10 @@ void MPU6050_ReadData(u8 reg_add, unsigned char *Read, u8 num)
 
 	for (i = 0; i < (num - 1); i++)
 	{
-		*Read = I2C_RecvByte(1);
+		*Read = I2C_RecvByte();
 		Read++;
 	}
-	*Read = I2C_RecvByte(0);
+	*Read = I2C_RecvByte();
 	I2C_Stop();
 }
 
