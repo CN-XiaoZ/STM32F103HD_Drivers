@@ -17,15 +17,15 @@ void Ultrasound_Config(void)
     GPIO_Init(ECHO_GPIO_PORT, &GPIO_InitStructure);
 }
 
-float measure(void)
+float Ultrasound_Measure(void)
 {
     int count = 0;
     float Lenth;
     TRIG_H;
     delay_us(10);
     TRIG_L; //初始化 发送触发波
-    while (GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_11) == 0){}
-    while (GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_11) == 1 && count < 2000) //需要测量距离3m 6m/340
+    while (GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_2) == 0){}
+    while (GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_2) == 1 && count < 2000) //需要测量距离3m 6m/340
     {
         delay_us(10);
         count++;

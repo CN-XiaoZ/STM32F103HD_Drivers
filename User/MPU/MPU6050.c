@@ -28,12 +28,12 @@ void MPU6050_ReadData(u8 reg_add, unsigned char *Read, u8 num)
 	I2C_SendByte(MPU6050_SLAVE_ADDRESS + 1);
 	I2C_WaitAck();
 
-	for (i = 0; i < (num - 1); i++)
+	for (i = 0; i < (num-1) ; i++)
 	{
-		*Read = I2C_RecvByte();
+		*Read = I2C_RecvByte(1);
 		Read++;
 	}
-	*Read = I2C_RecvByte();
+	*Read = I2C_RecvByte(0);
 	I2C_Stop();
 }
 

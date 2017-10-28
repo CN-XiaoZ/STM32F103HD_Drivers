@@ -1,5 +1,8 @@
 #include "./IIC/IIC.h"
 #include "./delay/delay.h"
+
+#define I2C_SDA_READ()  ((I2C2->IDR & GPIO_Pin_11) != 0)	/* ��SDA����״̬ */
+
 void I2C_Config(void)
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
@@ -89,24 +92,48 @@ void I2C_SendByte(u8 dat)
 		dat <<= 1;
 	}
 }
-u8 I2C_RecvByte(void)
+void I2C_Ack(void)
+{
+	SDA_L;	/* CPU����SDA = 0 */
+	delay_us(5);
+	SCL_H;	/* CPU����1��ʱ�� */
+	delay_us(5);
+	SCL_L;
+	delay_us(5);
+	SDA_H;	/* CPU�ͷ�SDA���� */
+}
+void I2C_NAck(void)
+{
+	SDA_H;	/* CPU����SDA = 1 */
+	delay_us(5);
+	SCL_H;	/* CPU����1��ʱ�� */
+	delay_us(5);
+	SCL_L;
+	delay_us(5);
+}
+u8 I2C_RecvByte(int ack)
 {
 	u8 i;
-	u8 dat = 0;
-	SDA_H;
-	delay_us(1);
+	u8 value;
+
+	value = 0;
 	for (i = 0; i < 8; i++)
 	{
-		dat <<= 1;
-
+		value <<= 1;
 		SCL_H;
-		if (SDA_read)
-			dat |= 0x01;
 		delay_us(5);
+		if (SDA_read)
+		{
+			value++;
+		}
 		SCL_L;
 		delay_us(5);
 	}
-	return dat;
+	if(ack==0)
+		I2C_NAck();
+	else
+		I2C_Ack();
+	return value;
 }
 u8 Single_WriteI2C_byte(u8 Slave_Address, u8 REG_Address, u8 data)
 {
@@ -178,11 +205,11 @@ u8 Single_ReadI2C(u8 Slave_Address, u8 REG_Address, u8 *REG_data, u8 length)
 
 	while (length - 1)
 	{
-		*REG_data++ = I2C_RecvByte();
+		*REG_data++ = I2C_RecvByte(1);
 		I2C_SendACK(0);
 		length--;
 	}
-	*REG_data = I2C_RecvByte();
+	*REG_data = I2C_RecvByte(0);
 	I2C_SendACK(1);
 	I2C_Stop();
 	return SET;

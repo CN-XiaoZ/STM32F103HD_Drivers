@@ -2,8 +2,8 @@
 #define __RED_H
 
 #include "stm32f10x.h"
-#include "Motor.h"
-#include "Delay.h"
+#include "./Motor/motor.h"
+#include "./delay/delay.h"
 #define Black 1
 #define White 0
 //L2 C6 L1 C8 R1 C9 R2 C7 MID A15   RF B13  RB B15  LF B14  LB B12
@@ -53,10 +53,10 @@
 #define MID GPIO_ReadInputDataBit(MID_GPIO_PORT, MID_GPIO_PIN)
 #define L1 GPIO_ReadInputDataBit(L1_GPIO_PORT, L1_GPIO_PIN)
 #define L2 GPIO_ReadInputDataBit(L2_GPIO_PORT, L2_GPIO_PIN)
-#define RF GPIO_ReadInputDataBit(RF_GPIO_PORT, RF_GPIO_PIN)
+#define LB GPIO_ReadInputDataBit(RF_GPIO_PORT, RF_GPIO_PIN)
 #define RB GPIO_ReadInputDataBit(RB_GPIO_PORT, RB_GPIO_PIN)
 #define LF GPIO_ReadInputDataBit(LF_GPIO_PORT, LF_GPIO_PIN)
-#define LB GPIO_ReadInputDataBit(LB_GPIO_PORT, LB_GPIO_PIN)
+#define RF GPIO_ReadInputDataBit(LB_GPIO_PORT, LB_GPIO_PIN)
 #define SWITCH GPIO_ReadInputDataBit(SWITCH_GPIO_PORT, SWITCH_GPIO_PIN)
 void Redswitch_Config(void);
 void Switch_Config(void);

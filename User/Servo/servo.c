@@ -85,6 +85,7 @@ void Servo_Config()
     TIM_Cmd(TIM_Group_2, ENABLE);
 }
 //平滑过渡角度函数
+/*
 void Servo_Angle(int angle1, int angle2, int angle3, int angle4, int angle5, int angle6, int angle7, int angle8)
 {
     float i1, i2, i3, i4, i5, i6, i7, i8;
@@ -158,7 +159,7 @@ void Servo_Angle(int angle1, int angle2, int angle3, int angle4, int angle5, int
         TIM_Group_1->CCR1 = angle1;
         delay_ms(40);
     }
-    TIM_Group_2->CCR4 = angle8;
+    TIM_Group_2->CCR4 = k8;
     TIM_Group_2->CCR3 = k7;
     TIM_Group_2->CCR2 = k6;
     TIM_Group_2->CCR1 = k5;
@@ -167,32 +168,32 @@ void Servo_Angle(int angle1, int angle2, int angle3, int angle4, int angle5, int
     TIM_Group_1->CCR2 = k2;
     TIM_Group_1->CCR1 = k1;
 }
-
-// /*无平滑处理*/
-// void Servo_Angle(int angle1, int angle2, int angle3, int angle4, int angle5, int angle6, int angle7, int angle8)
-// {
-//     angle1 = angle1 * 5.55;
-//     angle1 = angle1 + 250;
-//     angle2 = angle2 * 5.55;
-//     angle2 = angle2 + 250;
-//     angle3 = angle3 * 5.55;
-//     angle3 = angle3 + 250;
-//     angle4 = angle4 * 5.55;
-//     angle4 = angle4 + 250;
-//     angle5 = angle5 * 5.55;
-//     angle5 = angle5 + 250;
-//     angle6 = angle6 * 5.55;
-//     angle6 = angle6 + 250;
-//     angle7 = angle7 * 5.55;
-//     angle7 = angle7 + 250;
-//     angle8 = angle8 * 5.55;
-//     angle8 = angle8 + 250;  
-//     TIM_Group_2->CCR4 = angle8;
-//     TIM_Group_2->CCR3 = angle7;
-//     TIM_Group_2->CCR2 = angle6;
-//     TIM_Group_2->CCR1 = angle5;
-//     TIM_Group_1->CCR4 = angle4;
-//     TIM_Group_1->CCR3 = angle3;
-//     TIM_Group_1->CCR2 = angle2;
-//     TIM_Group_1->CCR1 = angle1;
-// }
+*/
+/*无平滑处理*/
+void Servo_Angle(int angle1, int angle2, int angle3, int angle4, int angle5, int angle6, int angle7, int angle8)
+ {
+     angle1 = angle1 * 5.55;
+     angle1 = angle1 + 250;
+     angle2 = angle2 * 5.55;
+     angle2 = angle2 + 250;
+     angle3 = angle3 * 5.55;
+     angle3 = angle3 + 250;
+     angle4 = angle4 * 5.55;
+     angle4 = angle4 + 250;
+     angle5 = angle5 * 5.55;
+     angle5 = angle5 + 250;
+     angle6 = angle6 * 5.55;
+     angle6 = angle6 + 250;
+     angle7 = angle7 * 5.55;
+     angle7 = angle7 + 250;
+     angle8 = angle8 * 5.55;
+     angle8 = angle8 + 250;  
+     TIM_Group_2->CCR4 = angle8;
+     TIM_Group_2->CCR3 = angle7;
+     TIM_Group_2->CCR2 = angle6;
+     TIM_Group_2->CCR1 = angle5;
+     TIM_Group_1->CCR4 = angle4;
+     TIM_Group_1->CCR3 = angle3;
+     TIM_Group_1->CCR2 = angle2;
+     TIM_Group_1->CCR1 = angle1;
+}

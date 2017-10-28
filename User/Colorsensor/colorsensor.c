@@ -35,6 +35,5 @@ int GetColor(void)
         return 1; //红色
     if (CG > CB && CG > CR)
         return 2; //绿色
-    if (CB > CR && CB > CG)
-        return 3; //蓝色
+    return 3; //蓝色
 }

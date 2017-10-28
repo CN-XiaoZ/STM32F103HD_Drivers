@@ -21,7 +21,7 @@ void Motor_Config(void)
     GPIO_Init(LA2_GPIO_PORT, &GPIO_InitStructure);
 
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
-    GPIO_InitStructure.GPIO_Pin = LB1_GPIO_PIN;
+    GPIO_InitStructure.GPIO_Pin = LB1_GPIO_PIN;    
     GPIO_Init(LB1_GPIO_PORT, &GPIO_InitStructure);
 
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
@@ -118,11 +118,11 @@ void Motor_Control(int32_t LA, int32_t LB, int32_t RA, int32_t RB)
 
 void Motor_FWD(void)
 {
-    Motor_Control(21801, 22056, 25499, 25499);
+    Motor_Control(25499, 25499, 25499, 25499);
 }
 void Motor_BEH(void)
 {
-    Motor_Control(-16750, -16750, -19900, -19900);
+    Motor_Control(-25499, -25499, -25499, -25499);
 }
 void Motor_STOP(void)
 {
